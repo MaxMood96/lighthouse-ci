@@ -5,7 +5,7 @@
     "start": "lhci server --config=./lighthouserc.json"
   },
   "dependencies": {
-    "@lhci/cli": "0.8.0",
+    "@lhci/cli": "0.8.1",
     "@lhci/server": "0.8.0",
     "mysql2": "^2.1.0",
     "pg": "^7.12.1",
