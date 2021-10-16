@@ -24,7 +24,9 @@
     "test:lint:jsx": "eslint -c ./.eslintrc.ui.js --ext jsx ./packages/server/src/ui ./packages/viewer/src/ui",
     "test:lint:tests": "eslint -c ./.eslintrc.tests.js ./packages/*/test",
     "test:docker": "bash scripts/test-docker.sh",
-    "test:unit": "jest --maxWorkers=2"
+    "test:unit": "jest --maxWorkers=2",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -85,5 +87,9 @@
     "rimraf": "^3.0.2",
     "sqlite3": "^5.0.0",
     "typescript": "^3.9.3"
+  },
+  "snyk": true,
+  "dependencies": {
+    "@snyk/protect": "latest"
   }
 }
