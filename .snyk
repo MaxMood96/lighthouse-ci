@@ -1,0 +1,117 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.22.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - puppeteer > https-proxy-agent:
+        patched: '2021-10-16T07:25:18.149Z'
+    - lerna > @lerna/publish > @evocateur/npm-registry-fetch > make-fetch-happen > https-proxy-agent:
+        patched: '2021-10-16T07:25:18.149Z'
+  SNYK-JS-LODASH-567746:
+    - '@babel/core > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - eslint > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addon-actions > @storybook/components > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - babel-eslint > @babel/traverse > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - eslint > inquirer > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - parcel-bundler > @babel/traverse > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addon-storyshots > @jest/transform > @babel/core > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - parcel-bundler > @babel/plugin-transform-modules-commonjs > @babel/helper-module-transforms > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - babel-eslint > @babel/traverse > @babel/generator > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addon-actions > @storybook/api > telejson > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > html-webpack-plugin > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > inquirer > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - babel-jest > babel-preset-jest > babel-plugin-jest-hoist > @babel/types > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > @babel/preset-env > @babel/plugin-transform-block-scoping > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - parcel-bundler > @babel/traverse > @babel/helper-function-name > @babel/types > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/addons > @storybook/api > telejson > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > react-dev-utils > inquirer > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - babel-jest > babel-plugin-istanbul > istanbul-lib-instrument > @babel/core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - lerna > @lerna/clean > @lerna/prompt > inquirer > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - lerna > @lerna/version > @lerna/conventional-commits > conventional-changelog-core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > @babel/preset-env > @babel/plugin-transform-modules-amd > @babel/helper-module-transforms > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - babel-jest > babel-plugin-istanbul > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest > @jest/core > @jest/reporters > istanbul-lib-instrument > @babel/core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - lerna > @lerna/version > @lerna/conventional-commits > conventional-changelog-core > conventional-changelog-writer > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - lerna > @lerna/version > @lerna/conventional-commits > conventional-changelog-core > conventional-commits-parser > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest > @jest/core > @jest/reporters > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > @babel/preset-env > @babel/plugin-transform-classes > @babel/helper-replace-supers > @babel/traverse > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest-circus > jest-runtime > @jest/transform > babel-plugin-istanbul > istanbul-lib-instrument > @babel/core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest-circus > jest-runtime > @jest/transform > babel-plugin-istanbul > istanbul-lib-instrument > @babel/core > @babel/helper-module-transforms > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > @babel/preset-env > @babel/plugin-transform-classes > @babel/helper-replace-supers > @babel/traverse > @babel/generator > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest > @jest/core > jest-config > jest-environment-jsdom > jsdom > request-promise-native > request-promise-core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest-circus > jest-runtime > jest-config > jest-environment-jsdom > jsdom > request-promise-native > request-promise-core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest-image-snapshot > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest-circus > @babel/traverse > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addon-storyshots-puppeteer > jest-image-snapshot > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - eslint > table > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest-circus > @babel/traverse > @babel/generator > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - babel-jest > @jest/transform > @babel/core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > babel-preset-minify > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - parcel-bundler > babylon-walk > babel-types > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - parcel-bundler > htmlnano > uncss > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest > @jest/core > jest-snapshot > @babel/types > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - babel-jest > @jest/transform > @babel/core > @babel/traverse > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest-circus > jest-runtime > @jest/transform > @babel/core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest > @jest/core > @jest/transform > @babel/core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/preact > @storybook/core > babel-preset-minify > babel-plugin-minify-dead-code-elimination > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - parcel-bundler > @babel/preset-env > @babel/preset-modules > @babel/plugin-proposal-unicode-property-regex > @babel/helper-regex > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - jest > @jest/core > @jest/transform > @babel/core > @babel/traverse > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addon-actions > @storybook/theming > @emotion/styled > babel-plugin-emotion > @babel/helper-module-imports > @babel/types > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addon-actions > react-inspector > storybook-chromatic > jsdom > request-promise-native > request-promise-core > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - parcel-bundler > htmlnano > uncss > jsdom > request-promise-native > request-promise-core > lodash:
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addons > @storybook/api > @storybook/theming > @emotion/styled > babel-plugin-emotion > @babel/helper-module-imports > @babel/types > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
+    - '@storybook/addon-links > @storybook/addons > @storybook/api > @storybook/theming > @emotion/styled > babel-plugin-emotion > @babel/helper-module-imports > @babel/types > lodash':
+        patched: '2021-10-16T07:25:18.149Z'
