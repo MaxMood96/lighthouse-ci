@@ -25,7 +25,9 @@
     "test:lint:jsx": "eslint ./packages/server/src/ui ./packages/viewer/src/ui",
     "test:lint:tests": "eslint ./packages/*/test",
     "test:docker": "bash scripts/test-docker.sh",
-    "test:unit": "jest --maxWorkers=2"
+    "test:unit": "jest --maxWorkers=2",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "devDependencies": {
     "@chialab/esbuild-plugin-html": "^0.17.2",
@@ -84,5 +86,9 @@
     "sqlite3": "^5.1.2",
     "ts-jest": "^29.0.5",
     "typescript": "^4.5.4"
+  },
+  "snyk": true,
+  "dependencies": {
+    "@snyk/protect": "latest"
   }
 }
