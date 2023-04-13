@@ -1,0 +1,66 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - jest-circus > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-config > jest-circus > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > jest-config > jest-circus > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-config > jest-circus > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-config > jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > jest-config > jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-config > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > jest-config > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-config > jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-config > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest-circus > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-config > jest-circus > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > jest-config > jest-circus > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-config > jest-circus > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-config > jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > jest-config > jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > @jest/core > jest-config > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > jest-config > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-config > jest-circus > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
+    - jest > jest-cli > @jest/core > jest-config > jest-runner > jest-runtime > @jest/globals > @jest/expect > jest-snapshot > @types/babel__traverse > @babel/types > lodash:
+        patched: '2023-02-18T21:05:03.579Z'
