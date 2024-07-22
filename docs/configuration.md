@@ -10,6 +10,8 @@ Lighthouse CI will automatically look for a configuration file in the current wo
 
 1. `.lighthouserc.js`
 1. `lighthouserc.js`
+1. `.lighthouserc.cjs`
+1. `lighthouserc.cjs`
 1. `.lighthouserc.json`
 1. `lighthouserc.json`
 1. `.lighthouserc.yml`
@@ -230,6 +232,9 @@ Options:
   --maxAutodiscoverUrls      The maximum number of pages to collect when using the staticDistDir
                              option with no specified URL. Disable this limit by setting to 0.
                                                                                [number] [default: 5]
+  --staticDirFileDiscoveryDepth The maximum depth of nested folders Lighthouse will look into to discover 
+                                URLs on a static file folder.
+                                                                               [number] [default: 2]
 ```
 
 #### `method`
@@ -326,7 +331,7 @@ For more information on how to use puppeteer, read up on [their API docs](https:
 
 #### `puppeteerLaunchOptions`
 
-An object of options to pass to puppeteer's [`launch` method](https://github.com/puppeteer/puppeteer/blob/v2.0.0/docs/api.md#puppeteerlaunchoptions). Only used when `puppeterScript` is set.
+An object of options to pass to puppeteer's [`launch` method](https://github.com/puppeteer/puppeteer/blob/v2.0.0/docs/api.md#puppeteerlaunchoptions). Only used when `puppeteerScript` is set.
 
 #### `psiApiKey`
 
@@ -418,6 +423,25 @@ lhci collect --staticDistDir=./public --url=http://localhost/products/pricing/
 lhci collect --url=https://example-1.com --url=https://example-2.com
 # Have LHCI start a server and login with puppeteer before running
 lhci collect --start-server-command="yarn serve" --url=http://localhost:8080/ --puppeteer-script=./path/to/login-with-puppeteer.js
+```
+
+### `staticDirFileDiscoveryDepth`
+
+The maximum depth level of nested folders that Lighthouse will look into to discover URLs. If not set, this will default to 2.
+
+### Example
+```text
+
+public/
+├── index.html               #level 0                      
+├── contact/
+│   └── index.html           #level 1
+├── projects/
+│   ├──index.html            #level 1
+│   └── crisis/
+│       ├──index.html        #level 2
+│       └── earthquake/
+│           └── index.html   #level 3
 ```
 
 ---
@@ -1007,7 +1031,7 @@ _Optional_ The maximum number of requests to send to the PageSpeed Insights API 
 
 ##### `psiCollectCron.sites[i].categories`
 
-_Optional_ An array containing the categories to test for each url in this site. Defaults to `['performance', 'accessibility', 'best-practices', 'pwa', 'seo']` (all categories).
+_Optional_ An array containing the categories to test for each url in this site. Defaults to `['performance', 'accessibility', 'best-practices', 'seo']` (all categories).
 
 ##### `psiCollectCron.sites[i].strategy`
 

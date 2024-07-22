@@ -52,7 +52,7 @@ npx lhci server --storage.storageMethod=sql --storage.sqlDialect=sqlite --storag
 
 ### Heroku
 
-LHCI server can be deployed to Heroku on their free tier in just a few minutes. See the [Heroku recipe](./recipes/heroku-server/README.md) for details.
+LHCI server can be deployed to Heroku in just a few minutes. See the [Heroku recipe](./recipes/heroku-server/README.md) for details.
 
 ### Docker
 
@@ -171,3 +171,19 @@ const lhci = require('@lhci/server');
 ### Firewall Rules
 
 You can also protect your server through firewall rules to prevent it from being accessed from outside your internal network. Refer to your infrastructure provider's documentation on how to setup firewall rules to block external IP addresses from accessing the server. Don't forget to allow your CI machines!
+
+### Self-Hosted Lighthouse Report Viewer
+
+If you are hosting your own lighthouse report viewer instead of using the [default viewer](https://googlechrome.github.io/lighthouse/viewer), you can add `--viewer.origin` to your lighthouse server configuration. Eg.
+
+```js
+const {createServer} = require('@lhci/server');
+
+console.log('Starting server...');
+createServer({
+  ...
+  viewer: {
+    origin: 'https://viewer-url' // Default: https://googlechrome.github.io
+  }
+}).then(({port}) => console.log('LHCI listening on port', port));
+```

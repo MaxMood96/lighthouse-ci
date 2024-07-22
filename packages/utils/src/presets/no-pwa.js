@@ -7,18 +7,13 @@
 
 const recommended = require('./recommended.js');
 
+// TODO: PWA doesn't exist anymore, so remove?
+
 module.exports = {
   assertions: {
     ...recommended.assertions,
     // Every PWA audit is disabled
     'is-on-https': 'off',
-    'service-worker': 'off',
-    'installable-manifest': 'off',
-    'splash-screen': 'off',
-    'themed-omnibox': 'off',
-    'content-width': 'off',
     viewport: 'off',
-    'apple-touch-icon': 'off',
-    'maskable-icon': 'off',
   },
 };

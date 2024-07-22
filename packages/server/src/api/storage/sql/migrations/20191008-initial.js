@@ -5,15 +5,15 @@
  */
 'use strict';
 
+const Sequelize = require('sequelize');
+
 /* eslint-disable new-cap */
 
 module.exports = {
   /**
-   * @param {import('sequelize').QueryInterface} queryInterface
-   * @param {typeof import('sequelize')} Sequelize
-   * @param {LHCI.ServerCommand.StorageOptions} options
+   * @param {{queryInterface: import('sequelize').QueryInterface, options: LHCI.ServerCommand.StorageOptions}} _
    */
-  up: async (queryInterface, Sequelize, options) => {
+  up: async ({queryInterface, options}) => {
     await queryInterface.createTable('projects', {
       id: {type: Sequelize.UUID(), primaryKey: true},
       name: {type: Sequelize.STRING(40)},
@@ -52,15 +52,15 @@ module.exports = {
       buildId: {type: Sequelize.UUID()},
       url: {type: Sequelize.STRING({length: 256})},
       name: {type: Sequelize.STRING({length: 100})},
-      value: {type: Sequelize.NUMERIC(12, 4)},
+      value: {type: Sequelize.DECIMAL(12, 4)},
       createdAt: {type: Sequelize.DATE(6)},
       updatedAt: {type: Sequelize.DATE(6)},
     });
   },
   /**
-   * @param {import('sequelize').QueryInterface} queryInterface
+   * @param {{queryInterface: import('sequelize').QueryInterface, options: LHCI.ServerCommand.StorageOptions}} _
    */
-  down: async queryInterface => {
+  down: async ({queryInterface}) => {
     await queryInterface.dropTable('statistics');
     await queryInterface.dropTable('runs');
     await queryInterface.dropTable('builds');

@@ -18,14 +18,23 @@ function ensureDirectoryExists(baseDir = LHCI_DIR) {
 }
 
 /**
+ * @param {string} [directoryOrPath]
  * @return {string[]}
  */
-function loadSavedLHRs() {
-  ensureDirectoryExists();
+function loadSavedLHRs(directoryOrPath) {
+  directoryOrPath = directoryOrPath || LHCI_DIR;
+
+  if (directoryOrPath === LHCI_DIR) {
+    ensureDirectoryExists();
+  }
+
+  if (fs.lstatSync(directoryOrPath).isFile()) {
+    return [fs.readFileSync(directoryOrPath, 'utf8')];
+  }
 
   /** @type {string[]} */
   const lhrs = [];
-  for (const file of fs.readdirSync(LHCI_DIR)) {
+  for (const file of fs.readdirSync(directoryOrPath)) {
     if (!LHR_REGEX.test(file)) continue;
 
     const filePath = path.join(LHCI_DIR, file);
@@ -38,22 +47,22 @@ function loadSavedLHRs() {
 /**
  * @param {string} lhr
  */
-function saveLHR(lhr, baseDir = LHCI_DIR) {
+async function saveLHR(lhr, baseDir = LHCI_DIR) {
   const baseFilename = `lhr-${Date.now()}`;
   const basePath = path.join(baseDir, baseFilename);
   ensureDirectoryExists(baseDir);
   fs.writeFileSync(`${basePath}.json`, lhr);
-  fs.writeFileSync(`${basePath}.html`, getHTMLReportForLHR(JSON.parse(lhr)));
+  fs.writeFileSync(`${basePath}.html`, await getHTMLReportForLHR(JSON.parse(lhr)));
 }
 
 /**
  * @param {LH.Result} lhr
- * @return {string}
+ * @return {Promise<string>}
  */
-function getHTMLReportForLHR(lhr) {
-  // @ts-ignore - lighthouse doesn't publish .d.ts files yet
-  const ReportGenerator = require('lighthouse/report/generator/report-generator.js');
-  return ReportGenerator.generateReportHtml(lhr);
+async function getHTMLReportForLHR(lhr) {
+  const {generateReport} = await import('lighthouse');
+  // @ts-expect-error TODO: Import exact types from Lighthouse.
+  return generateReport(lhr);
 }
 
 function clearSavedReportsAndLHRs() {

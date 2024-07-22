@@ -7,6 +7,7 @@
 
 /* eslint-env jest */
 
+const assert = require('assert');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
@@ -24,6 +25,17 @@ const {
 } = require('./test-utils.js');
 
 jest.setTimeout(120e3);
+
+async function fetchJson(url) {
+  const response = await fetch(url);
+  const text = await response.text();
+  if (text[0] === '<') {
+    // Yes, print it also. Because Jest loves to trim error messages.
+    console.error(`Got a bad response, expected JSON but saw:\n\n${text}`);
+    assert.fail(`Got a bad response, expected JSON but saw:\n\n${text}`);
+  }
+  return JSON.parse(text);
+}
 
 describe('Lighthouse CI CLI', () => {
   const rcFile = path.join(__dirname, 'fixtures/lighthouserc.json');
@@ -53,8 +65,7 @@ describe('Lighthouse CI CLI', () => {
 
   describe('server', () => {
     it('should accept requests', async () => {
-      const response = await fetch(`http://localhost:${server.port}/v1/projects`);
-      const projects = await response.json();
+      const projects = await fetchJson(`http://localhost:${server.port}/v1/projects`);
       expect(projects).toEqual([]);
     });
   });
@@ -246,11 +257,10 @@ describe('Lighthouse CI CLI', () => {
 
     it('should have saved lhrs to the API', async () => {
       const [projectId, buildId, runAId, runBId] = uuids;
-      const response = await fetch(
+
+      const runs = await fetchJson(
         `http://localhost:${server.port}/v1/projects/${projectId}/builds/${buildId}/runs`
       );
-
-      const runs = await response.json();
       expect(runs.map(run => run.id)).toEqual([runBId, runAId]);
       expect(runs.map(run => run.url)).toEqual([
         'http://localhost:PORT/app/', // make sure we replaced the port
@@ -264,11 +274,10 @@ describe('Lighthouse CI CLI', () => {
 
     it('should have sealed the build', async () => {
       const [projectId, buildId] = uuids;
-      const response = await fetch(
+
+      const build = await fetchJson(
         `http://localhost:${server.port}/v1/projects/${projectId}/builds/${buildId}`
       );
-
-      const build = await response.json();
       expect(build).toMatchObject({lifecycle: 'sealed'});
     });
 
@@ -309,7 +318,7 @@ describe('Lighthouse CI CLI', () => {
     it('should assert failures', async () => {
       const {stdout, stderr, status} = await runCLI([
         'assert',
-        `--assertions.installable-manifest=error`,
+        `--assertions.prioritize-lcp-image=error`,
       ]);
 
       expect(stdout).toMatchInlineSnapshot(`""`);
@@ -318,9 +327,9 @@ describe('Lighthouse CI CLI', () => {
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m :
 
-          [31mX[0m  [1minstallable-manifest[0m failure for [1mminScore[0m assertion
-               Web app manifest or service worker do not meet the installability requirements
-               https://web.dev/installable-manifest/
+          [31mX[0m  [1mprioritize-lcp-image[0m failure for [1mminScore[0m assertion
+               Preload Largest Contentful Paint image
+               https://web.dev/articles/optimize-lcp#optimize_when_the_resource_is_discovered
 
                 expected: >=[32m0.9[0m
                    found: [31m0[0m
@@ -347,13 +356,13 @@ describe('Lighthouse CI CLI', () => {
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m :
 
-          [31mX[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
-               Performance budget
-               https://developers.google.com/web/tools/lighthouse/audits/budgets
+          [31mX[0m  [1mprioritize-lcp-image[0m failure for [1mminScore[0m assertion
+               Preload Largest Contentful Paint image
+               https://web.dev/articles/optimize-lcp#optimize_when_the_resource_is_discovered
 
-                expected: <=[32mXXXX[0m
-                   found: [31mXXXX[0m
-              [2mall values: XXXX[0m
+                expected: >=[32m1[0m
+                   found: [31m0[0m
+              [2mall values: 0, 0[0m
 
         Assertion failed. Exiting with status code 1.
         "
@@ -370,9 +379,9 @@ describe('Lighthouse CI CLI', () => {
 
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m :
 
-          [31mX[0m  [1minstallable-manifest[0m failure for [1mminScore[0m assertion
-               Web app manifest or service worker do not meet the installability requirements
-               https://web.dev/installable-manifest/
+          [31mX[0m  [1mprioritize-lcp-image[0m failure for [1mminScore[0m assertion
+               Preload Largest Contentful Paint image
+               https://web.dev/articles/optimize-lcp#optimize_when_the_resource_is_discovered
 
                 expected: >=[32m0.9[0m
                    found: [31m0[0m
@@ -400,20 +409,20 @@ describe('Lighthouse CI CLI', () => {
 
           [31mX[0m  [1mfirst-contentful-paint[0m failure for [1mmaxNumericValue[0m assertion
                First Contentful Paint
-               https://web.dev/first-contentful-paint/
+               https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/
 
                 expected: <=[32m1[0m
                    found: [31mXXXX[0m
               [2mall values: XXXX, XXXX[0m
 
 
-          [31mX[0m  [1mperformance-budget[0m.script.size failure for [1mmaxNumericValue[0m assertion
-               Performance budget
-               https://developers.google.com/web/tools/lighthouse/audits/budgets
+          [31mX[0m  [1mprioritize-lcp-image[0m failure for [1mminScore[0m assertion
+               Preload Largest Contentful Paint image
+               https://web.dev/articles/optimize-lcp#optimize_when_the_resource_is_discovered
 
-                expected: <=[32mXXXX[0m
-                   found: [31mXXXX[0m
-              [2mall values: XXXX[0m
+                expected: >=[32m1[0m
+                   found: [31m0[0m
+              [2mall values: 0, 0[0m
 
         Assertion failed. Exiting with status code 1.
         "
@@ -431,8 +440,7 @@ describe('Lighthouse CI CLI', () => {
         1 result(s) for [1mhttp://localhost:XXXX/app/[0m :
 
           [31mX[0m  [1mresource-summary[0m.script.size failure for [1mmaxNumericValue[0m assertion
-               Keep request counts low and transfer sizes small
-               https://web.dev/use-lighthouse-for-performance-budgets/
+               Resources Summary
 
                 expected: <=[32mXXXX[0m
                    found: [31mXXXX[0m
@@ -452,7 +460,7 @@ describe('Lighthouse CI CLI', () => {
     let page;
 
     beforeAll(async () => {
-      browser = await puppeteer.launch();
+      browser = await puppeteer.launch({headless: 'new'});
     });
 
     afterAll(async () => {

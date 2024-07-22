@@ -33,7 +33,10 @@ function buildCommand(yargs) {
       choices: ['node', 'psi'],
       default: 'node',
     },
-    headful: {type: 'boolean', description: 'Run with a headful Chrome'},
+    headful: {
+      description:
+        'Run with a headful Chrome (pass `headless: false` to puppeteer). Overrides value of `puppeteerLaunchOptions.headless`',
+    },
     additive: {type: 'boolean', description: 'Skips clearing of previous collect data'},
     url: {
       description:
@@ -94,6 +97,12 @@ function buildCommand(yargs) {
       default: 5,
       type: 'number',
     },
+    staticDirFileDiscoveryDepth: {
+      description:
+        'The maximum depth level of nested folders that Lighthouse will look into to discover URLs. If not set, this will default to 2.',
+      default: 2,
+      type: 'number',
+    },
   });
 }
 
@@ -125,7 +134,7 @@ async function runOnUrl(url, options, context) {
         ...options,
         settings,
       });
-      saveLHR(lhr);
+      await saveLHR(lhr);
       process.stdout.write('done.\n');
 
       // PSI caches results for a minute. Ensure each run is unique by waiting 60s between runs.
@@ -187,7 +196,8 @@ async function startServerAndDetermineUrls(options) {
       : options.autodiscoverUrlBlocklist
       ? [options.autodiscoverUrlBlocklist]
       : [];
-    const availableUrls = server.getAvailableUrls();
+    const maxStaticDirFileDiscoveryDepth = options.staticDirFileDiscoveryDepth || 2;
+    const availableUrls = server.getAvailableUrls(maxStaticDirFileDiscoveryDepth);
     const normalizedBlocklist = autodiscoverUrlBlocklistAsArray.map(rawUrl => {
       const url = new URL(rawUrl, 'http://localhost');
       url.port = server.port.toString();
