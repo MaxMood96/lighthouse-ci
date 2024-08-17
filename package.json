@@ -31,7 +31,7 @@
     "@chialab/esbuild-plugin-html": "^0.17.2",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-links": "^6.5.13",
-    "@storybook/addon-storyshots": "^6.5.13",
+    "@storybook/addon-storyshots": "^7.6.17",
     "@storybook/addon-storyshots-puppeteer": "^6.5.13",
     "@storybook/addons": "^6.5.13",
     "@storybook/preact": "^6.5.13",
