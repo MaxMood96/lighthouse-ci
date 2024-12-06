@@ -34,7 +34,7 @@
     "@storybook/addon-storyshots": "^6.5.13",
     "@storybook/addon-storyshots-puppeteer": "^6.5.13",
     "@storybook/addons": "^6.5.13",
-    "@storybook/preact": "^6.5.13",
+    "@storybook/preact": "^7.0.0",
     "@testing-library/dom": "^5.4.0",
     "@types/body-parser": "^1.17.0",
     "@types/compression": "^1.0.1",
