@@ -37,7 +37,7 @@
     "@storybook/addon-storyshots-puppeteer": "^7.6.4",
     "@storybook/addons": "^7.6.4",
     "@storybook/preact": "^7.6.4",
-    "@storybook/preact-webpack5": "^7.6.4",
+    "@storybook/preact-webpack5": "^7.6.21",
     "@testing-library/dom": "^5.4.0",
     "@types/bluebird": "^3.5.42",
     "@types/body-parser": "^1.17.0",
@@ -87,7 +87,7 @@
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
     "sqlite3": "^5.1.2",
-    "storybook": "^7.6.4",
+    "storybook": "^7.6.21",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
   }
